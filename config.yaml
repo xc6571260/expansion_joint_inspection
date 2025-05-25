@@ -1,0 +1,7 @@
+origin_folder: "./origin"     
+output_folder: "./output"      
+detect_model_path: "./models/yolo_detect.pt"  
+seg_model_path: "./models/yolo_seg.pt"    
+resize_dim: 1024
+eps: 200
+min_samples: 1
