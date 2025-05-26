@@ -36,6 +36,7 @@ seg_model = YOLO(seg_model_path)
 image_paths = []
 for ext in ["*.jpg", "*.JPG", "*.png"]:
     image_paths.extend(glob.glob(os.path.join(origin_folder, ext)))
+image_paths = list(set(image_paths))  
 image_paths.sort()
 
 for img_path in tqdm(image_paths, desc="處理所有圖片"):
@@ -46,14 +47,14 @@ for img_path in tqdm(image_paths, desc="處理所有圖片"):
 
     H, W = orig_img.shape[:2]
     merged_boxes, scale_x, scale_y = detect_and_merge_boxes(detect_model, orig_img, resize_dim, eps=eps, min_samples=min_samples)
-
+    base_name = os.path.splitext(os.path.basename(img_path))[0]
     if not merged_boxes:
         print(f"⚠️ 無偵測結果: {img_path}")
         result_img = orig_img
     else:
-        result_img = process_patches(orig_img, merged_boxes, scale_x, scale_y, seg_model)
+        result_img = process_patches(orig_img, merged_boxes, scale_x, scale_y, seg_model, img_name=base_name)
 
-    base_name = os.path.splitext(os.path.basename(img_path))[0]
+    
     save_path = os.path.join(output_folder, f"{base_name}.jpg")
     save_image(result_img, save_path)
 
