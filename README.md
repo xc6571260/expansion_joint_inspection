@@ -7,7 +7,7 @@
 ## 📍 平台規劃星現 -A區
 
 <div align="center">
-  <img src="poi_A.png" width="700"/>
+  <img src="fig/poi_A.png" width="700"/>
 </div>
 
 - POI 共 67 個，經緯度位置於 poi 資料夾內
@@ -22,7 +22,7 @@
 ## 📍 平台規劃星現 -F區
 
 <div align="center">
-  <img src="poi_F.png" width="700"/>
+  <img src="fig/poi_F.png" width="700"/>
 </div>
 
 - POI 共 83 個，經緯度位置於 poi 資料夾內
@@ -36,7 +36,7 @@
 ## 🛠️ 工作流程圖
 
 <div align="center">
-  <img src="workflow.png" width="850"/>
+  <img src="fig/workflow.png" width="850"/>
 </div>
 
 1. UAV 拍攝原始影像（4000x3000）
@@ -50,7 +50,7 @@
 ## 📊 成果範例
 
 <div align="center">
-  <img src="example.png" width="600"/>
+  <img src="fig/example.png" width="600"/>
 </div>
 
 ---
