@@ -4,22 +4,26 @@
 
 ---
 
-## 📍 平台規劃呈現 -A區
+## 📍 平台規劃星現 -A區
 
-![平台規劃](poi_A.png)
+<div align="center">
+  <img src="poi_A.png" width="700"/>
+</div>
 
 - POI 共 67 個，經緯度位置於 poi 資料夾內
 - 規劃預測目標：伸縮縫（POI: 1-67）
 - 當圖中有檢測到異常（顯示該 POI 點為紅色），否則為綠色
 - 異常只有紅色的寬度才是異常，綠色與黑色為正常狀況
 - 平台顯示本次伸縮縫抓取數量、正常數量、異常數量
-- 輸出範例:[INFO] image_name: MAX_1462, total: 4, normal: 4, abnormal: 0
- 
+- 輸出範例: `[INFO] image_name: MAX_1462, total: 4, normal: 4, abnormal: 0`
+
 ---
 
-## 📍 平台規劃呈現 -F區
+## 📍 平台規劃星現 -F區
 
-![平台規劃](poi_F.png)
+<div align="center">
+  <img src="poi_F.png" width="700"/>
+</div>
 
 - POI 共 83 個，經緯度位置於 poi 資料夾內
 - 規劃預測目標：伸縮縫（POI: 1-83）
@@ -31,13 +35,23 @@
 
 ## 🛠️ 工作流程圖
 
-![流程圖](workflow.png)
+<div align="center">
+  <img src="workflow.png" width="850"/>
+</div>
 
 1. UAV 拍攝原始影像（4000x3000）
 2. 影像縮小、切割（1024x1024）
 3. YOLOv11 模型偵測伸縮縫與寬度
 4. 根據設計規範進行分級判斷
 5. 結果標示於原圖，輔助後續巡檢判讀
+
+---
+
+## 📊 成果範例
+
+<div align="center">
+  <img src="example.png" width="600"/>
+</div>
 
 ---
 
