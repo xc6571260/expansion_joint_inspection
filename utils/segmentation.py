@@ -88,18 +88,18 @@ def process_patches(orig_img, merged_boxes, scale_x, scale_y, seg_model, img_nam
                         avg_width_cm = np.mean(filtered_widths) * 0.67
                         max_width_cm = np.max(filtered_widths) * 0.67
 
-                # 統計結果
-                total_count += 1
-                if avg_width_cm > 10:
-                    abnormal_count += 1
-                    rect_color = (0, 0, 255)  # 紅色
-                else:
-                    normal_count += 1
-                    rect_color = (0, 100, 0)  # 綠色
-
-                label = f"avg {avg_width_cm:.1f}cm"
-                
-                orig_img[indiv_mask == 255] = rect_color
+                    # 統計結果
+                    total_count += 1
+                    if avg_width_cm > 10:
+                        abnormal_count += 1
+                        rect_color = (0, 0, 255)  # 紅色
+                    else:
+                        normal_count += 1
+                        rect_color = (0, 100, 0)  # 綠色
+    
+                    label = f"avg {avg_width_cm:.1f}cm"
+                    
+                    orig_img[indiv_mask == 255] = rect_color
 
                 # ===== 畫框與標籤 =====
                 font = cv2.FONT_HERSHEY_SIMPLEX
