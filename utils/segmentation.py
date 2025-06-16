@@ -79,7 +79,7 @@ def process_patches(orig_img, merged_boxes, scale_x, scale_y, seg_model, img_nam
                 # 判斷是否 overflow
                 if max_width_cm > 40:
                     label = "Overflow"
-                    # rect_color = (0, 0, 0)  # 黑色
+                    rect_color = (0, 0, 0)  # 黑色
                 else:
                     std_width = np.std(widths)
                     upper_bound = mean_width + std_width
@@ -92,8 +92,28 @@ def process_patches(orig_img, merged_boxes, scale_x, scale_y, seg_model, img_nam
                 total_count += 1
                 if avg_width_cm > 10:
                     abnormal_count += 1
+                    rect_color = (0, 0, 255)  # 紅色
                 else:
                     normal_count += 1
+                    rect_color = (0, 100, 0)  # 綠色
+
+                label = f"avg {avg_width_cm:.1f}cm"
+                
+                orig_img[indiv_mask == 255] = rect_color
+
+                # ===== 畫框與標籤 =====
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                font_scale = 1.5
+                thickness = 5
+                (text_width, text_height), baseline = cv2.getTextSize(label, font, font_scale, thickness)
+                cv2.rectangle(orig_img, (x1_orig, y1_orig), (x2_orig, y2_orig), rect_color, thickness)
+                cv2.rectangle(orig_img,
+                              (x1_orig, y1_orig - text_height - baseline),
+                              (x1_orig + text_width, y1_orig),
+                              rect_color, thickness=cv2.FILLED)
+                cv2.putText(orig_img, label,
+                            (x1_orig, y1_orig - baseline),
+                            font, font_scale, (255, 255, 255), thickness, lineType=cv2.LINE_AA)
         # 若無裂縫，則不計數
 
     print(f"[INFO] image_name: {img_name}, total: {total_count}, normal: {normal_count}, abnormal: {abnormal_count}")
