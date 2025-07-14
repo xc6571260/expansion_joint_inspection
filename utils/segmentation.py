@@ -99,7 +99,13 @@ def process_patches(orig_img, merged_boxes, scale_x, scale_y, seg_model, img_nam
     
                     label = f"avg {avg_width_cm:.1f}cm"
                     
-                    orig_img[indiv_mask == 255] = rect_color
+                    #伸縮縫全填滿
+                    #orig_img[indiv_mask == 255] = rect_color
+
+                    # 找出裂縫邊界輪廓並描繪
+                    contours, _ = cv2.findContours(indiv_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                    cv2.drawContours(orig_img, contours, -1, rect_color, thickness=3)
+
 
                 # ===== 畫框與標籤 =====
                 font = cv2.FONT_HERSHEY_SIMPLEX
